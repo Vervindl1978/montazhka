@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#0f1216">
+<meta name="theme-color" content="#0d0f12">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <title>Монтажка — відеоредактор</title>
 <style>
-:root{--bg:#0f1216;--panel:#171b21;--panel2:#1f242c;--line:#2b313b;--txt:#e8ecf1;--mut:#8a94a3;--acc:#f5b82e;--acc2:#3fb2ff;--red:#ff5d5d;--vid:#2f6fd6;--tx:#9b59d0;--mu:#1fa37a}
+:root{--bg:#0d0f12;--panel:#171b21;--panel2:#1f242c;--line:#2b313b;--txt:#e8ecf1;--mut:#8a94a3;--acc:#f5b82e;--acc2:#3fb2ff;--red:#ff5d5d;--vid:#2f6fd6;--tx:#9b59d0;--mu:#1fa37a}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font:14px/1.35 system-ui,-apple-system,Roboto,sans-serif;overscroll-behavior:none}
 body{display:flex;flex-direction:column;height:100dvh;overflow:hidden}
@@ -19,35 +19,70 @@ button.acc{background:var(--acc);color:#1a1300;border-color:var(--acc);font-weig
 button.dang{color:var(--red)}
 button:disabled{opacity:.4}
 select,input[type=number],input[type=text],textarea{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
-header{flex:0 0 auto;display:flex;gap:6px;align-items:center;padding:6px 8px;background:var(--panel);border-bottom:1px solid var(--line)}
-header .logo{font-weight:800;letter-spacing:.3px;margin-right:auto;white-space:nowrap}
-header .logo span{color:var(--acc)}
-header select{padding:6px 4px}
-#stage{flex:1 1 auto;min-height:150px;display:flex;align-items:center;justify-content:center;background:#07090b;position:relative;overflow:hidden}
-#out{max-width:100%;max-height:100%;background:#000;touch-action:none;box-shadow:0 0 0 1px #222}
-#empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--mut);text-align:center;padding:20px}
-#transport{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--panel);border-top:1px solid var(--line)}
-#transport #time{font-variant-numeric:tabular-nums;color:var(--mut);margin-right:auto}
-#playBtn{min-width:48px;font-size:16px}
-#tl{position:relative;overflow-x:auto;overflow-y:hidden;background:var(--panel);border-top:1px solid var(--line);flex:0 0 auto}
-#tlin{position:relative;height:132px}
-#ruler{position:absolute;left:0;right:0;top:0;height:20px;border-bottom:1px solid var(--line);touch-action:none;cursor:ew-resize}
-#ruler span{position:absolute;top:3px;font-size:10px;color:var(--mut);transform:translateX(-50%)}
-#ruler i{position:absolute;bottom:0;width:1px;height:5px;background:var(--line)}
-.row{position:absolute;left:0;right:0;border-bottom:1px solid #20252d}
-#rowV{top:22px;height:50px}#rowT{top:74px;height:28px}#rowM{top:104px;height:26px}
-.blk{position:absolute;top:3px;bottom:3px;border-radius:7px;overflow:hidden;font-size:11px;padding:2px 6px;white-space:nowrap;text-overflow:ellipsis;cursor:pointer;border:2px solid transparent;text-shadow:0 1px 2px #000}
-.blk.v{background:var(--vid) center/auto 100% repeat-x}
-.blk.t{background:var(--tx)}
-.blk.m{background:var(--mu)}
-.blk.sel{border-color:var(--acc);box-shadow:0 0 0 1px #000 inset}
-.blk .lab{background:#0008;border-radius:4px;padding:0 4px}
-.tr{position:absolute;top:14px;height:22px;border-radius:6px;background:repeating-linear-gradient(45deg,#fff3,#fff3 4px,#0003 4px,#0003 8px);border:1px solid #fff8;z-index:2;pointer-events:none;font-size:10px;text-align:center;line-height:20px}
-.hint{position:absolute;left:24px;top:50%;transform:translateY(-50%);color:var(--mut);font-size:11px;pointer-events:none}
-#ph{position:absolute;top:0;bottom:0;width:2px;background:var(--acc);pointer-events:none;z-index:5}
-#ph:before{content:"";position:absolute;top:0;left:-5px;border:6px solid transparent;border-top-color:var(--acc)}
-#tools{flex:0 0 auto;display:flex;gap:6px;padding:6px 8px;overflow-x:auto;background:var(--panel);border-top:1px solid var(--line)}
-#props{flex:0 0 auto;max-height:36vh;overflow-y:auto;padding:8px 10px 14px;background:var(--bg);border-top:1px solid var(--line)}
+header{flex:0 0 auto;display:flex;gap:6px;align-items:center;padding:8px 10px 6px;background:var(--bg)}
+.brand{display:flex;align-items:center;gap:8px;margin-right:auto;font-weight:800;font-size:19px;letter-spacing:.2px}
+.brand svg{width:32px;height:32px;display:block}
+.brand .nm b{color:var(--acc);font-weight:800}
+button.ghost{background:transparent;border-color:transparent;padding:6px 8px}
+.ic svg,.ib svg{width:24px;height:24px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ib{background:none;border:0;padding:7px;color:var(--txt);border-radius:10px}
+.ib:disabled{color:#4a525e;opacity:1}
+#fmtBtn{background:var(--panel2);border:0;border-radius:10px;padding:7px 11px;font-weight:600;font-size:14px}
+#expBtn{background:linear-gradient(135deg,#ffd25a,#f08a1c);border:0;color:#1a1000;font-weight:800;padding:8px 16px;border-radius:10px;font-size:15px}
+#stage{flex:1 1 auto;min-height:150px;display:flex;align-items:center;justify-content:center;background:#000;position:relative;overflow:hidden}
+#stage:fullscreen{background:#000}
+#out{max-width:100%;max-height:100%;background:#000;touch-action:none}
+#empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--mut);text-align:center;padding:20px}
+#empty svg{width:64px;height:64px}
+#transport{flex:0 0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:4px 8px;background:var(--bg)}
+#time{font-variant-numeric:tabular-nums;font-size:15px;font-weight:600}
+#time small{color:var(--mut);font-weight:400;font-size:15px}
+#playBtn{justify-self:center;padding:6px 12px}
+#playBtn svg{width:30px;height:30px}
+.tright{display:flex;justify-content:flex-end;gap:2px}
+#tlwrap{position:relative;flex:0 0 auto;background:var(--bg);border-top:1px solid #1b2027}
+#tl{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;touch-action:pan-x}
+#tl::-webkit-scrollbar{display:none}
+#tlin{position:relative;height:152px}
+#ruler{position:absolute;left:0;right:0;top:0;height:24px}
+#ruler span{position:absolute;top:5px;font-size:11px;color:#aab3c0;transform:translateX(-50%);font-variant-numeric:tabular-nums}
+#ruler i{position:absolute;top:11px;width:3px;height:3px;border-radius:50%;background:#59626f;transform:translateX(-50%)}
+.row{position:absolute;left:0;right:0}
+#rowV{top:30px;height:58px}#rowT{top:92px;height:26px}#rowM{top:120px;height:30px}
+.blk{position:absolute;top:2px;bottom:2px;border-radius:7px;overflow:hidden;font-size:10px;line-height:1.5;padding:0 6px;white-space:nowrap;text-overflow:ellipsis;cursor:pointer;border:2px solid transparent;text-shadow:0 1px 2px #000;color:#fff}
+.blk.v{background:#24364d center/auto 100% repeat-x;border-radius:4px}
+.blk.t{background:#6c3fb0;display:flex;align-items:center}
+.blk.m{background:linear-gradient(#1c6f6a,#145a56);display:flex;align-items:center;gap:6px}
+.blk.m:after{content:"";position:absolute;left:0;right:0;bottom:2px;height:55%;opacity:.35;background:repeating-linear-gradient(90deg,#7fe6dc 0 2px,transparent 2px 5px);-webkit-mask:linear-gradient(transparent,#000);mask:linear-gradient(transparent,#000)}
+.blk.sel{border-color:#fff;box-shadow:0 0 0 1px #000 inset}
+.blk .lab{position:absolute;left:4px;top:3px;background:#000a;border-radius:4px;padding:0 5px;font-size:10px}
+.trb{position:absolute;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:6px;background:#fff;color:#111;border:0;padding:0;z-index:3;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-shadow:0 1px 4px #0008}
+.trb.on{background:var(--acc)}
+.trb.tw{border-radius:5px}
+.addEnd{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:9px;background:#fff;color:#111;border:0;padding:0;display:flex;align-items:center;justify-content:center}
+.addEnd svg{width:24px;height:24px;stroke:#111;stroke-width:2.4;fill:none;stroke-linecap:round}
+.addRow{position:absolute;top:2px;bottom:2px;border-radius:7px;border:0;display:flex;align-items:center;gap:7px;padding:0 12px;font-size:13px;white-space:nowrap}
+.addRow svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.addRow.m{background:linear-gradient(90deg,#16504d,#1c6f6a 60%,#16504d);color:#d8fffa;min-width:220px}
+.addRow.t{background:#2a2140;color:#cbb8f2}
+.addRow.v{background:#fff;color:#111;font-weight:700}
+.muteAll{position:absolute;top:2px;bottom:2px;width:76px;background:none;border:0;color:var(--txt);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;line-height:1.15;gap:2px;padding:0}
+.muteAll svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.muteAll.on{color:var(--red)}
+#ph{position:absolute;left:50%;top:22px;bottom:0;width:2px;margin-left:-1px;background:#fff;pointer-events:none;z-index:6;border-radius:1px;box-shadow:0 0 3px #000}
+#tools{flex:0 0 auto;display:flex;gap:2px;padding:6px 4px calc(6px + env(safe-area-inset-bottom));background:var(--bg);overflow-x:auto;scrollbar-width:none;border-top:1px solid #1b2027}
+#tools::-webkit-scrollbar{display:none}
+#tools button{flex:0 0 auto;background:none;border:0;display:flex;flex-direction:column;align-items:center;font-size:12px;color:var(--txt);padding:6px 9px;gap:5px;min-width:68px}
+#tools button svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+body.sheet #tools{display:none}
+#props{display:none;flex:0 0 auto;max-height:40vh;overflow-y:auto;padding:0 12px 12px;background:var(--panel);border-top:1px solid var(--line);border-radius:14px 14px 0 0}
+body.sheet #props{display:block}
+.sh-head{position:sticky;top:0;background:var(--panel);display:flex;align-items:center;gap:2px;padding:6px 0 4px;z-index:2}
+.sh-head b{margin-right:auto;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.sh-head button{padding:6px 8px;background:none;border-color:transparent;font-size:15px}
+.stabs{display:flex;gap:4px;overflow-x:auto;padding:0 0 6px;position:sticky;top:38px;background:var(--panel);z-index:2;scrollbar-width:none}
+.stabs button{font-size:12px;padding:4px 11px;border-radius:999px;background:var(--panel2)}
+.stabs button.on{background:var(--acc);color:#1a1300;border-color:var(--acc)}
 #props h3{margin:2px 0 8px;font-size:14px;display:flex;align-items:center;gap:6px}
 #props h4{margin:12px 0 4px;font-size:12px;color:var(--acc);text-transform:uppercase;letter-spacing:.5px}
 .f{display:block;margin:6px 0}
@@ -79,50 +114,54 @@ textarea.ttext{width:100%;min-height:54px;resize:vertical}
 .help code{color:var(--acc2)}
 .bar{height:10px;background:var(--panel2);border-radius:6px;overflow:hidden;margin:12px 0}
 .bar i{display:block;height:100%;width:0;background:var(--acc)}
-#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#000d;border:1px solid var(--line);padding:10px 14px;border-radius:10px;z-index:99;opacity:0;transition:opacity .25s;pointer-events:none;max-width:90vw;text-align:center}
+#toast{position:fixed;left:50%;top:64px;transform:translateX(-50%);background:#000d;border:1px solid var(--line);padding:10px 14px;border-radius:10px;z-index:99;opacity:0;transition:opacity .25s;pointer-events:none;max-width:90vw;text-align:center}
 #toast.on{opacity:1}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">🎬 Монтаж<span>ка</span></div>
-  <select id="aspect" title="Формат кадру">
-    <option value="9:16">9:16</option><option value="1:1">1:1</option><option value="4:5">4:5</option><option value="16:9">16:9</option>
-  </select>
-  <select id="quality" title="Якість"><option value="720">720p</option><option value="1080">1080p</option></select>
-  <button id="libBtn" title="Бібліотека переходів і ефектів">✨</button>
-  <button id="expBtn" class="acc">Експорт</button>
+  <div class="brand"><span class="logo" data-ic="logo"></span><span class="nm">Монтаж<b>ка</b></span></div>
+  <button id="helpBtn" class="ib" data-ic="help" title="Довідка"></button>
+  <button id="fmtBtn" title="Формат і якість">720P ▾</button>
+  <button id="expBtn">Експорт</button>
 </header>
 
 <div id="stage">
   <canvas id="out" width="720" height="1280"></canvas>
-  <div id="empty"><div style="font-size:40px">🎞️</div><div>Додайте відео або фото, щоб почати монтаж</div><button class="acc" id="emptyAdd">+ Додати медіа</button></div>
+  <div id="empty"><span data-ic="logo"></span><div>Додайте відео або фото, щоб почати монтаж</div><button class="acc" id="emptyAdd">+ Додати медіа</button></div>
 </div>
 
 <div id="transport">
-  <button id="startBtn" title="На початок">⏮</button>
-  <button id="playBtn">▶</button>
-  <div id="time">0:00.0 / 0:00.0</div>
-  <button id="zoomOut" title="Зменшити масштаб">−</button>
-  <button id="zoomIn" title="Збільшити масштаб">+</button>
+  <div id="time">00:00 <small>/ 00:00</small></div>
+  <button id="playBtn" class="ib" title="Відтворити"></button>
+  <div class="tright">
+    <button id="undoBtn" class="ib" data-ic="undo" title="Скасувати" disabled></button>
+    <button id="redoBtn" class="ib" data-ic="redo" title="Повторити" disabled></button>
+    <button id="fullBtn" class="ib" data-ic="full" title="На весь екран"></button>
+  </div>
 </div>
 
-<div id="tl"><div id="tlin">
+<div id="tlwrap"><div id="tl"><div id="tlin">
   <div id="ruler"></div>
   <div class="row" id="rowV"></div>
   <div class="row" id="rowT"></div>
   <div class="row" id="rowM"></div>
-  <div id="ph"></div>
-</div></div>
-
-<div id="tools">
-  <button id="addMedia">🎞 + Медіа</button>
-  <button id="addText">🅣 + Текст</button>
-  <button id="addMusic">🎵 + Музика</button>
-  <button id="splitBtn">✂ Розрізати</button>
-</div>
+</div></div><div id="ph"></div></div>
 
 <div id="props"></div>
+
+<nav id="tools">
+  <button id="tMedia" data-ic="media">Медіа</button>
+  <button id="tEdit" data-ic="cut">Редагувати</button>
+  <button id="tAudio" data-ic="note">Аудіо</button>
+  <button id="tText" data-ic="text">Текст</button>
+  <button id="tFx" data-ic="star">Ефекти</button>
+  <button id="tTr" data-ic="trans">Переходи</button>
+  <button id="tColor" data-ic="sliders">Фільтри</button>
+  <button id="tFmt" data-ic="aspect">Формат</button>
+  <button id="tSplit" data-ic="split">Розрізати</button>
+  <button id="tLib" data-ic="lib">Бібліотека</button>
+</nav>
 
 <input type="file" id="fMedia" accept="video/*,image/*" multiple hidden>
 <input type="file" id="fMusic" accept="audio/*,video/*" hidden>
@@ -370,7 +409,7 @@ async function fixDuration(v){if(isFinite(v.duration))return v.duration;v.curren
 function thumbOf(src,w,h){try{const c=document.createElement('canvas');c.height=48;c.width=Math.max(16,Math.round(48*w/h));c.getContext('2d').drawImage(src,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.6)}catch(e){return''}}
 function newClip(o){return Object.assign({id:uid(),in:0,out:0,speed:1,volume:1,mute:false,fit:'cover',bright:0,contrast:0,sat:0,effect:'none',fxInt:1,fxParams:{},trans:null,kb:false,imgDur:3},o)}
 async function importMedia(files){
-  ensureAudio();let added=0;
+  ensureAudio();let added=0;const st0=snap();
   for(const f of files){
     try{
       const url=URL.createObjectURL(f);
@@ -389,14 +428,14 @@ async function importMedia(files){
       added++;
     }catch(e){toast('Не вдалося відкрити: '+f.name)}
   }
-  if(added){layout();select('clip',S.clips[S.clips.length-1].id);renderTimeline();toast('Додано файлів: '+added)}
+  if(added){hist(st0);layout();select('clip',S.clips[S.clips.length-1].id);renderTimeline();toast('Додано файлів: '+added)}
 }
 async function importMusic(f){
   ensureAudio();const url=URL.createObjectURL(f);
   const a=document.createElement('audio');a.src=url;a.preload='auto';
   try{await waitEv(a,'loadedmetadata')}catch(e){return toast('Не вдалося відкрити аудіо')}
   const d=await fixDuration(a);
-  if(S.music){S.music.el.pause();try{S.music.gain&&S.music.gain.disconnect()}catch(e){}}
+  hist();if(S.music)S.music.el.pause();
   S.music={id:uid(),name:f.name,el:a,dur:d,start:0,trimIn:0,volume:.8,fadeIn:false,fadeOut:true,gain:hookAudio(a)};
   select('music',S.music.id);renderTimeline();
 }
@@ -418,7 +457,7 @@ function syncMedia(t,playing){
   for(const c of S.clips){if(c.type!=='video')continue;const v=c.el;
     const local=t-c.start,active=local>=0&&local<c.dur&&t<S.total,soon=local<0&&local>-.8;
     const want=c.in+clamp(local,0,c.dur)*c.speed;
-    if(c.gain)c.gain.gain.value=c.mute?0:c.volume;
+    if(c.gain)c.gain.gain.value=(c.mute||S.muteAll)?0:c.volume;
     if(active){
       if(v.playbackRate!==c.speed)v.playbackRate=c.speed;
       if(playing){if(v.paused){if(Math.abs(v.currentTime-want)>.05)v.currentTime=want;v.play().catch(()=>{})}else if(Math.abs(v.currentTime-want)>.3)v.currentTime=want}
@@ -504,45 +543,105 @@ function loop(now){
   if(ED.open)edRender(now/1000);
   requestAnimationFrame(loop);
 }
+const IC={
+ logo:'<svg viewBox="0 0 32 32"><defs><linearGradient id="lgM" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd25a"/><stop offset="1" stop-color="#f08a1c"/></linearGradient></defs><rect width="32" height="32" rx="8" fill="url(#lgM)"/><path d="M7 23V9.5l6 7 6-7V23" fill="none" stroke="#161006" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 12.6v7.8l5.2-3.9z" fill="#161006"/></svg>',
+ play:'<svg viewBox="0 0 24 24"><path d="M7 4.8v14.4L19 12z"/></svg>',
+ pause:'<svg viewBox="0 0 24 24"><path d="M8.5 5v14M15.5 5v14"/></svg>',
+ undo:'<svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>',
+ redo:'<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg>',
+ full:'<svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
+ help:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.5"/><path d="M12 17.3v.1"/></svg>',
+ media:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M12 9v6M9 12h6"/></svg>',
+ cut:'<svg viewBox="0 0 24 24"><circle cx="6" cy="6.5" r="2.6"/><circle cx="6" cy="17.5" r="2.6"/><path d="M8.3 8L20 18M8.3 16L20 6"/></svg>',
+ note:'<svg viewBox="0 0 24 24"><path d="M9 18V5.5l10-2v12.5"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>',
+ text:'<svg viewBox="0 0 24 24"><path d="M5 7V4.5h14V7M12 4.5v15M9 19.5h6"/></svg>',
+ star:'<svg viewBox="0 0 24 24"><path d="M12 3.5l2.4 5.3 5.8.7-4.3 3.9 1.2 5.7L12 16.2l-5.1 2.9 1.2-5.7-4.3-3.9 5.8-.7z"/></svg>',
+ trans:'<svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="8" height="12" rx="1.5"/><rect x="13.5" y="6" width="8" height="12" rx="1.5"/><path d="M8 12h8M14 10l2 2-2 2"/></svg>',
+ sliders:'<svg viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg>',
+ aspect:'<svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M3 8v8M21 8v8"/></svg>',
+ split:'<svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M8.5 7H4v10h4.5M15.5 7H20v10h-4.5"/></svg>',
+ lib:'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg>',
+ vol:'<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9.5a3.5 3.5 0 0 1 0 5M18 7a7 7 0 0 1 0 10"/></svg>',
+ mute:'<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>',
+ plus:'<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>'
+};
+document.querySelectorAll('[data-ic]').forEach(el=>el.insertAdjacentHTML('afterbegin',IC[el.dataset.ic]));
+const fmtS=t=>{t=Math.max(0,Math.floor(t||0));return String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0')};
+function setPlayIcon(){$('#playBtn').innerHTML=S.playing?IC.pause:IC.play}
 function play(){if(!S.clips.length)return toast('Спершу додайте медіа');ensureAudio();actx.resume().catch(()=>{});
-  if(S.t>=S.total-.05)S.t=0;S.playing=true;lastNow=performance.now();$('#playBtn').textContent='⏸'}
-function pause(){S.playing=false;$('#playBtn').textContent='▶';syncMedia(S.t,false);kick()}
+  if(S.t>=S.total-.05)S.t=0;S.playing=true;lastNow=performance.now();setPlayIcon()}
+function pause(){S.playing=false;setPlayIcon();syncMedia(S.t,false);kick()}
 function seek(t){S.t=clamp(t,0,S.total);kick();updateHead()}
 
-/* ============ UI таймлайна ============ */
-const PAD=16;const tl=$('#tl'),tlin=$('#tlin');
+/* ============ Скасування / повтор ============ */
+const UNDO=[],REDO=[];
+function snap(){return{clips:S.clips.map(c=>Object.assign({},c,{fxParams:{...c.fxParams},trans:c.trans?{...c.trans,params:{...c.trans.params}}:null})),texts:S.texts.map(x=>({...x})),music:S.music?{...S.music}:null}}
+function hist(st){UNDO.push(st||snap());if(UNDO.length>80)UNDO.shift();REDO.length=0;updUndo()}
+function restore(st){
+  const keep=new Set(st.clips.map(c=>c.el));S.clips.forEach(c=>{if(c.type==='video'&&!keep.has(c.el))c.el.pause()});
+  if(S.music&&(!st.music||st.music.el!==S.music.el))S.music.el.pause();
+  S.clips=st.clips;S.texts=st.texts;S.music=st.music;
+  const sl=S.sel;if(sl&&!(sl.kind==='clip'?S.clips.some(c=>c.id===sl.id):sl.kind==='text'?S.texts.some(x=>x.id===sl.id):S.music&&S.music.id===sl.id))S.sel=null;
+  renderProps();renderTimeline();
+}
+function undo(){if(!UNDO.length)return;REDO.push(snap());restore(UNDO.pop());updUndo()}
+function redo(){if(!REDO.length)return;UNDO.push(snap());restore(REDO.pop());updUndo()}
+function updUndo(){$('#undoBtn').disabled=!UNDO.length;$('#redoBtn').disabled=!REDO.length}
+
+/* ============ UI таймлайна (курсор по центру) ============ */
+const tl=$('#tl'),tlin=$('#tlin');let PAD=180,progScroll=-1;
+function rulerStep(){return[1,2,4,5,10,15,30,60,120].find(s=>s*S.pps>=70)||300}
 function renderTimeline(){
-  layout();
-  const width=PAD*2+Math.max(S.total,6)*S.pps+120;tlin.style.width=width+'px';
-  const step=S.pps>=90?1:S.pps>=40?2:S.pps>=18?5:10;let r='';
-  for(let s=0;s<=Math.max(S.total,6)+2;s+=step){const x=PAD+s*S.pps;r+=`<span style="left:${x}px">${s<60?s+'с':fmt(s).replace('.0','')}</span><i style="left:${x}px"></i>`}
+  layout();PAD=Math.round(tl.clientWidth/2)||180;
+  const len=Math.max(S.total,.01)*S.pps;tlin.style.width=(PAD*2+len)+'px';
+  const step=rulerStep(),span=Math.max(S.total,tl.clientWidth/S.pps);let r='';
+  for(let s=0;s<=span+step;s+=step){const x=PAD+s*S.pps;r+=`<span style="left:${x}px">${fmtS(s)}</span><i style="left:${x+step*S.pps/2}px"></i>`}
   $('#ruler').innerHTML=r;
   const sel=S.sel||{};
-  $('#rowV').innerHTML=S.clips.length?S.clips.map(c=>`<div class="blk v${sel.id===c.id?' sel':''}" data-kind="clip" data-id="${c.id}" style="left:${PAD+c.start*S.pps}px;width:${Math.max(6,c.dur*S.pps)}px;background-image:url('${c.thumb||''}')"><span class="lab">${c.type==='image'?'🖼':'🎞'} ${esc(c.name)}${c.effect!=='none'?' ✨':''}${c.speed!==1?' ×'+c.speed:''}</span></div>`).join('')+
-    S.clips.filter(c=>c.td>0).map(c=>`<div class="tr" style="left:${PAD+(c.start+c.dur-c.td)*S.pps}px;width:${Math.max(14,c.td*S.pps)}px">⇄</div>`).join(''):'<div class="hint">Відео й фото</div>';
-  $('#rowT').innerHTML=S.texts.length?S.texts.map(x=>`<div class="blk t${sel.id===x.id?' sel':''}" data-kind="text" data-id="${x.id}" style="left:${PAD+x.start*S.pps}px;width:${Math.max(6,(x.end-x.start)*S.pps)}px">🅣 ${esc(x.text.split('\n')[0])}</div>`).join(''):'<div class="hint">Текст</div>';
+  let v=PAD>100?`<button class="muteAll${S.muteAll?' on':''}" data-act="muteAll" style="left:${PAD-86}px">${S.muteAll?IC.mute:IC.vol}<span>${S.muteAll?'Увімкнути':'Вимкнути'}<br>звук кліпів</span></button>`:'';
+  if(S.clips.length){
+    v+=S.clips.map(c=>`<div class="blk v${sel.id===c.id?' sel':''}" data-kind="clip" data-id="${c.id}" style="left:${PAD+c.start*S.pps}px;width:${Math.max(6,c.dur*S.pps)}px;background-image:url('${c.thumb||''}')"><span class="lab">${c.dur.toFixed(1)}с${c.effect!=='none'?' ✨':''}${c.speed!==1?' ×'+c.speed:''}${c.mute?' 🔇':''}</span></div>`).join('');
+    v+=S.clips.slice(0,-1).map(c=>`<button class="trb${c.trans?' on':''}" data-act="tr" data-id="${c.id}" style="left:${PAD+(c.start+c.dur-c.td/2)*S.pps}px" title="Перехід">${c.trans?'⇄':'|'}</button>`).join('');
+    v+=`<button class="addEnd" data-act="media" style="left:${PAD+len+8}px" title="Додати медіа">${IC.plus}</button>`;
+  }else v+=`<button class="addRow v" data-act="media" style="left:${PAD}px">${IC.plus} Додати відео або фото</button>`;
+  $('#rowV').innerHTML=v;
+  $('#rowT').innerHTML=S.texts.length?S.texts.map(x=>`<div class="blk t${sel.id===x.id?' sel':''}" data-kind="text" data-id="${x.id}" style="left:${PAD+x.start*S.pps}px;width:${Math.max(6,(x.end-x.start)*S.pps)}px">T&nbsp; ${esc(x.text.split('\n')[0])}</div>`).join(''):`<button class="addRow t" data-act="text" style="left:${PAD}px">${IC.text} Додати текст</button>`;
   const m=S.music;
-  $('#rowM').innerHTML=m?`<div class="blk m${sel.id===m.id?' sel':''}" data-kind="music" data-id="${m.id}" style="left:${PAD+m.start*S.pps}px;width:${Math.max(6,(m.dur-m.trimIn)*S.pps)}px">🎵 ${esc(m.name)}</div>`:'<div class="hint">Музика</div>';
+  $('#rowM').innerHTML=m?`<div class="blk m${sel.id===m.id?' sel':''}" data-kind="music" data-id="${m.id}" style="left:${PAD+m.start*S.pps}px;width:${Math.max(6,(m.dur-m.trimIn)*S.pps)}px">♪ ${esc(m.name)}</div>`:`<button class="addRow m" data-act="music" style="left:${PAD}px">${IC.note} Додати аудіо</button>`;
   $('#empty').style.display=S.clips.length?'none':'flex';
   updateHead();kick();
 }
-function updateHead(){const x=PAD+S.t*S.pps;$('#ph').style.left=x+'px';$('#time').textContent=fmt(S.t)+' / '+fmt(S.total);
-  if(S.playing){if(x<tl.scrollLeft+20||x>tl.scrollLeft+tl.clientWidth-30)tl.scrollLeft=x-tl.clientWidth*.25}}
-tlin.addEventListener('click',e=>{const b=e.target.closest('.blk');
-  if(b){select(b.dataset.kind,b.dataset.id);if(b.dataset.kind==='clip'){const c=S.clips.find(c=>c.id===b.dataset.id);if(c&&(S.t<c.start||S.t>=c.start+c.dur))seek(c.start+.01)}}
-  else if(!e.target.closest('#ruler')){const r=tlin.getBoundingClientRect();seek((e.clientX-r.left-PAD)/S.pps)}});
-(()=>{const ru=$('#ruler');let on=false;const go=e=>{const r=tlin.getBoundingClientRect();seek((e.clientX-r.left-PAD)/S.pps)};
-  ru.addEventListener('pointerdown',e=>{on=true;ru.setPointerCapture(e.pointerId);if(S.playing)pause();go(e)});
-  ru.addEventListener('pointermove',e=>{if(on)go(e)});ru.addEventListener('pointerup',()=>on=false);ru.addEventListener('pointercancel',()=>on=false)})();
+function updateHead(){$('#time').innerHTML=fmtS(S.t)+' <small>/ '+fmtS(S.total)+'</small>';
+  const want=Math.round(S.t*S.pps);if(Math.abs(tl.scrollLeft-want)>1){progScroll=want;tl.scrollLeft=want}}
+tl.addEventListener('scroll',()=>{
+  if(Math.abs(tl.scrollLeft-progScroll)<2)return;
+  if(S.playing&&!S.exporting)pause();if(S.exporting)return;
+  progScroll=tl.scrollLeft;S.t=clamp(tl.scrollLeft/S.pps,0,S.total);kick();
+  $('#time').innerHTML=fmtS(S.t)+' <small>/ '+fmtS(S.total)+'</small>'},{passive:true});
+tlin.addEventListener('click',e=>{
+  const act=e.target.closest('[data-act]');
+  if(act){const a=act.dataset.act;
+    if(a==='media')$('#fMedia').click();else if(a==='text')addText();else if(a==='music')$('#fMusic').click();
+    else if(a==='muteAll'){S.muteAll=!S.muteAll;renderTimeline()}
+    else if(a==='tr'){TAB.clip='tr';select('clip',act.dataset.id)}
+    return}
+  const b=e.target.closest('.blk');
+  if(b){select(b.dataset.kind,b.dataset.id);if(b.dataset.kind==='clip'){const c=S.clips.find(c=>c.id===b.dataset.id);if(c&&(S.t<c.start||S.t>=c.start+c.dur))seek(c.start+.01)}}});
+(()=>{let pinch=null;const dist=e=>Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+  tl.addEventListener('touchstart',e=>{if(e.touches.length===2)pinch={d:dist(e),pps:S.pps}},{passive:true});
+  tl.addEventListener('touchmove',e=>{if(pinch&&e.touches.length===2){e.preventDefault();const n=clamp(pinch.pps*dist(e)/pinch.d,8,320);if(Math.abs(n-S.pps)>.5){S.pps=n;renderTimeline()}}},{passive:false});
+  tl.addEventListener('touchend',e=>{if(e.touches.length<2)pinch=null});
+  tl.addEventListener('wheel',e=>{if(e.ctrlKey||e.metaKey){e.preventDefault();S.pps=clamp(S.pps*(e.deltaY<0?1.12:.89),8,320);renderTimeline()}},{passive:false});
+  window.addEventListener('resize',()=>renderTimeline())})();
 
 /* ============ Перетягування тексту на превʼю ============ */
 (()=>{let drag=null;
   const pt=e=>{const r=out.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*W,y:(e.clientY-r.top)/r.height*H}};
   out.addEventListener('pointerdown',e=>{if(S.exporting)return;const p=pt(e);
     const hit=[...S.texts].reverse().find(x=>x._box&&p.x>=x._box.x-20&&p.x<=x._box.x+x._box.w+20&&p.y>=x._box.y-20&&p.y<=x._box.y+x._box.h+20);
-    if(hit){if(!S.sel||S.sel.id!==hit.id)select('text',hit.id);drag={tx:hit,dx:hit.x*W-p.x,dy:hit.y*H-p.y};out.setPointerCapture(e.pointerId)}});
-  out.addEventListener('pointermove',e=>{if(!drag)return;const p=pt(e);drag.tx.x=clamp((p.x+drag.dx)/W,0,1);drag.tx.y=clamp((p.y+drag.dy)/H,0,1);kick()});
-  const end=()=>{drag=null};out.addEventListener('pointerup',end);out.addEventListener('pointercancel',end)})();
+    if(hit){if(!S.sel||S.sel.id!==hit.id)select('text',hit.id);drag={tx:hit,dx:hit.x*W-p.x,dy:hit.y*H-p.y,st:snap(),moved:false};out.setPointerCapture(e.pointerId)}});
+  out.addEventListener('pointermove',e=>{if(!drag)return;const p=pt(e);drag.tx.x=clamp((p.x+drag.dx)/W,0,1);drag.tx.y=clamp((p.y+drag.dy)/H,0,1);drag.moved=true;kick()});
+  const end=()=>{if(drag&&drag.moved)hist(drag.st);drag=null};out.addEventListener('pointerup',end);out.addEventListener('pointercancel',end)})();
 
 /* ============ Панель властивостей ============ */
 const props=$('#props');
@@ -553,36 +652,44 @@ function sel_(label,k,opts,val){return`<label class="f"><span>${label}</span><se
 function getPath(o,p){return p.split('.').reduce((a,k)=>a&&a[k],o)}
 function setPath(o,p,v){const ks=p.split('.');const last=ks.pop();const t=ks.reduce((a,k)=>a[k]=a[k]||{},o);t[last]=v}
 function bind(obj,after,fmts={}){
-  props.querySelectorAll('[data-k]').forEach(el=>{el.addEventListener('input',()=>{
+  props.querySelectorAll('[data-k]').forEach(el=>{let pend=null;const grab=()=>{if(!pend)pend=snap()};
+    el.addEventListener('pointerdown',grab);el.addEventListener('focus',grab);
+    el.addEventListener('change',()=>{if(pend){hist(pend);pend=null}});
+    el.addEventListener('input',()=>{if(el.tagName==='SELECT'||el.type==='checkbox'){grab();hist(pend);pend=null}
     const k=el.dataset.k;let v=el.type==='checkbox'?el.checked:(el.type==='range'||el.type==='number')?parseFloat(el.value):el.value;
     setPath(obj,k,v);const lab=props.querySelector(`[data-v="${k}"]`);if(lab)lab.textContent=(fmts[k]||num)(getPath(obj,k));
     after&&after(k,v,el);kick()})})}
 function paramSliders(entry,store,prefix){if(!entry||!entry.params)return'';
   return entry.params.filter(p=>p.type==='float').map(p=>{const v=store[p.name]!=null?store[p.name]:p.def;const mx=Math.max(1,Math.abs(p.def)*3);return sl(p.name,prefix+p.name,Math.min(0,p.def),mx,mx/100,v)}).join('')}
 function select(kind,id){S.sel=kind?{kind,id}:null;renderProps();renderTimeline()}
+const TAB={};
+function sheet(kind,title,acts,tabs){
+  const cur=tabs.some(t=>t.id===TAB[kind])?TAB[kind]:tabs[0].id;
+  props.innerHTML=`<div class="sh-head"><b>${title}</b>${acts}<button id="shClose" title="Закрити">✕</button></div>
+  ${tabs.length>1?`<div class="stabs">${tabs.map(t=>`<button data-tab="${t.id}" class="${t.id===cur?'on':''}">${t.label}</button>`).join('')}</div>`:''}
+  <div class="sbody">${tabs.find(t=>t.id===cur).html}</div>`;
+  props.querySelectorAll('.stabs [data-tab]').forEach(b=>b.onclick=()=>{TAB[kind]=b.dataset.tab;renderProps()});
+  $('#shClose').onclick=()=>select(null);
+}
 function renderProps(){
-  const s=S.sel;
-  if(!s){props.innerHTML=`<div class="muted">👆 Натисніть на кліп, текст або музику на таймлайні, щоб змінити їх.<br>Тексти можна перетягувати пальцем прямо на превʼю.<br>✨ — бібліотека переходів і ефектів: можна додати свої з файлу або написати власні.</div>`;return}
-  if(s.kind==='clip'){const c=S.clips.find(x=>x.id===s.id);if(!c)return select(null);const i=S.clips.indexOf(c);
+  const s=S.sel;document.body.classList.toggle('sheet',!!s);
+  if(!s){props.innerHTML='';return}
+  if(s.kind==='clip'){const c=S.clips.find(x=>x.id===s.id);if(!c)return select(null);const i=S.clips.indexOf(c),last=i===S.clips.length-1;
     const trOpts=[['','Без переходу (склейка)'],...Object.values(LIB.tr).map(x=>[x.id,x.name+(x.builtin?'':' ★')])];
     const fxOpts=[['none','Без ефекту'],...Object.values(LIB.fx).map(x=>[x.id,x.name+(x.builtin?'':' ★')])];
     const fxE=c.effect!=='none'?getProg('fx',c.effect):null,trE=c.trans?getProg('tr',c.trans.id):null;
-    props.innerHTML=`<h3>${c.type==='image'?'🖼':'🎞'} ${esc(c.name)}</h3>
-    <div class="btns"><button id="pL" ${i===0?'disabled':''}>◀ Раніше</button><button id="pR" ${i===S.clips.length-1?'disabled':''}>Пізніше ▶</button><button id="pSplit">✂ Тут</button><button id="pDup">⧉ Копія</button><button id="pDel" class="dang">🗑</button></div>
-    <h4>Тривалість</h4>
-    ${c.type==='video'?sl('Початок','in',0,c.mediaDur,.05,c.in,fmt)+sl('Кінець','out',0,c.mediaDur,.05,c.out,fmt)+
-      sel_('Швидкість','speed',[['0.25','×0.25'],['0.5','×0.5'],['0.75','×0.75'],['1','×1'],['1.5','×1.5'],['2','×2'],['3','×3']],String(c.speed))+
-      sl('Гучність','volume',0,2,.05,c.volume,v=>Math.round(v*100)+'%')+ck('Без звуку','mute',c.mute)
-      :sl('Тривалість','imgDur',.5,15,.1,c.imgDur,v=>v.toFixed(1)+'с')+ck('Плавне наближення','kb',c.kb)}
-    ${sel_('Заповнення кадру','fit',[['cover','Заповнити (обрізати краї)'],['contain','Вмістити повністю']],c.fit)}
-    <h4>Колір</h4>
-    ${sl('Яскравість','bright',-.5,.5,.01,c.bright)}${sl('Контраст','contrast',-.8,1,.01,c.contrast)}${sl('Насиченість','sat',-1,1,.01,c.sat)}
-    <h4>Ефект</h4>
-    ${sel_('Ефект','effect',fxOpts,c.effect)}
-    ${fxE?(fxE.err?`<div class="muted" style="color:var(--red)">Помилка шейдера: ${esc(fxE.err)}</div>`:sl('Сила','fxInt',0,1,.01,c.fxInt)+paramSliders(fxE,c.fxParams,'fxParams.')):''}
-    ${i<S.clips.length-1?`<h4>Перехід до наступного</h4>
-    <label class="f"><span>Перехід</span><select id="trSel" style="width:100%">${trOpts.map(([v,n])=>`<option value="${v}" ${(c.trans?c.trans.id:'')===v?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
-    ${c.trans?sl('Тривалість переходу','trans.dur',.1,2,.05,c.trans.dur,v=>v.toFixed(2)+'с')+paramSliders(trE,c.trans.params,'trans.params.'):''}`:''}`;
+    const tabs=[{id:'trim',label:'Тривалість',html:(c.type==='video'?sl('Початок','in',0,c.mediaDur,.05,c.in,fmt)+sl('Кінець','out',0,c.mediaDur,.05,c.out,fmt)+
+        sel_('Швидкість','speed',[['0.25','×0.25'],['0.5','×0.5'],['0.75','×0.75'],['1','×1'],['1.5','×1.5'],['2','×2'],['3','×3']],String(c.speed))
+        :sl('Тривалість','imgDur',.5,15,.1,c.imgDur,v=>v.toFixed(1)+'с')+ck('Плавне наближення','kb',c.kb))+
+        sel_('Заповнення кадру','fit',[['cover','Заповнити (обрізати краї)'],['contain','Вмістити повністю']],c.fit)}];
+    if(c.type==='video')tabs.push({id:'sound',label:'Звук',html:sl('Гучність','volume',0,2,.05,c.volume,v=>Math.round(v*100)+'%')+ck('Без звуку','mute',c.mute)});
+    tabs.push({id:'color',label:'Колір',html:sl('Яскравість','bright',-.5,.5,.01,c.bright)+sl('Контраст','contrast',-.8,1,.01,c.contrast)+sl('Насиченість','sat',-1,1,.01,c.sat)});
+    tabs.push({id:'fx',label:'Ефект'+(c.effect!=='none'?' •':''),html:sel_('Ефект','effect',fxOpts,c.effect)+
+      (fxE?(fxE.err?`<div class="muted" style="color:var(--red)">Помилка шейдера: ${esc(fxE.err)}</div>`:sl('Сила','fxInt',0,1,.01,c.fxInt)+paramSliders(fxE,c.fxParams,'fxParams.')):'')});
+    if(!last)tabs.push({id:'tr',label:'Перехід'+(c.trans?' •':''),html:`<label class="f"><span>Перехід до наступного кліпу</span><select id="trSel" style="width:100%">${trOpts.map(([v,n])=>`<option value="${v}" ${(c.trans?c.trans.id:'')===v?'selected':''}>${esc(n)}</option>`).join('')}</select></label>`+
+      (c.trans?sl('Тривалість переходу','trans.dur',.1,2,.05,c.trans.dur,v=>v.toFixed(2)+'с')+paramSliders(trE,c.trans.params,'trans.params.'):'')});
+    sheet('clip',(c.type==='image'?'🖼 ':'🎞 ')+esc(c.name),
+      `<button id="pL" title="Раніше" ${i===0?'disabled':''}>◀</button><button id="pR" title="Пізніше" ${last?'disabled':''}>▶</button><button id="pSplit" title="Розрізати тут">✂</button><button id="pDup" title="Копія">⧉</button><button id="pDel" title="Видалити" class="dang">🗑</button>`,tabs);
     bind(c,(k,v)=>{
       if(k==='speed')c.speed=parseFloat(v);
       if(k==='in'){c.in=Math.min(c.in,c.out-.1);seek(c.start+.01)}
@@ -590,41 +697,38 @@ function renderProps(){
       if(k==='effect'){renderProps()}
       if(['in','out','speed','imgDur','trans.dur','effect'].includes(k))renderTimeline();
     },{in:fmt,out:fmt,volume:v=>Math.round(v*100)+'%',imgDur:v=>v.toFixed(1)+'с','trans.dur':v=>v.toFixed(2)+'с'});
-    const tsel=$('#trSel');if(tsel)tsel.onchange=()=>{c.trans=tsel.value?{id:tsel.value,dur:c.trans?c.trans.dur:.6,params:{}}:null;renderProps();renderTimeline();if(c.trans)seek(c.start+c.dur-Math.min(c.trans.dur,c.dur/2)-.3)};
-    $('#pL').onclick=()=>{S.clips.splice(i,1);S.clips.splice(i-1,0,c);renderProps();renderTimeline()};
-    $('#pR').onclick=()=>{S.clips.splice(i,1);S.clips.splice(i+1,0,c);renderProps();renderTimeline()};
+    const tsel=$('#trSel');if(tsel)tsel.onchange=()=>{hist();c.trans=tsel.value?{id:tsel.value,dur:c.trans?c.trans.dur:.6,params:{}}:null;renderProps();renderTimeline();if(c.trans)seek(c.start+c.dur-Math.min(c.trans.dur,c.dur/2)-.3)};
+    $('#pL').onclick=()=>{hist();S.clips.splice(i,1);S.clips.splice(i-1,0,c);renderProps();renderTimeline()};
+    $('#pR').onclick=()=>{hist();S.clips.splice(i,1);S.clips.splice(i+1,0,c);renderProps();renderTimeline()};
     $('#pSplit').onclick=split;
-    $('#pDup').onclick=()=>{S.clips.splice(i+1,0,cloneClip(c));renderTimeline()};
-    $('#pDel').onclick=()=>{if(c.type==='video'){c.el.pause();try{c.gain&&c.gain.disconnect()}catch(e){}}S.clips.splice(i,1);select(null)};
+    $('#pDup').onclick=()=>{hist();S.clips.splice(i+1,0,cloneClip(c));renderTimeline()};
+    $('#pDel').onclick=()=>{hist();if(c.type==='video')c.el.pause();S.clips.splice(i,1);select(null)};
   }
   else if(s.kind==='text'){const x=S.texts.find(t=>t.id===s.id);if(!x)return select(null);const mx=Math.max(S.total,x.end,1);
-    props.innerHTML=`<h3>🅣 Текст</h3>
-    <textarea class="ttext" data-k="text">${esc(x.text)}</textarea>
-    <div class="btns"><button id="tStart">⏱ Почати з курсора</button><button id="tCenter">⊕ По центру</button><button id="tDup">⧉ Копія</button><button id="tDel" class="dang">🗑</button></div>
-    ${sl('Показ з','start',0,mx,.05,x.start,fmt)}${sl('Показ до','end',0,mx,.05,x.end,fmt)}
-    ${sl('Розмір','size',2,20,.1,x.size,v=>v.toFixed(1))}
-    <div class="grid2">${sel_('Анімація','anim',[['none','Без анімації'],['pop','Вискакування'],['fade','Плавно'],['up','Знизу вгору'],['type','Друкарська машинка']],x.anim)}
-    ${sel_('Шрифт','font',[['sans-serif','Звичайний'],['serif','З засічками'],['monospace','Моноширинний'],['cursive','Рукописний']],x.font)}</div>
-    <div class="grid2"><label class="f"><span>Колір</span><input type="color" data-k="color" value="${x.color}" style="width:100%;height:36px;border:0;background:none"></label>
-    ${sel_('Товщина','weight',[['400','Звичайна'],['700','Жирна'],['900','Дуже жирна']],x.weight)}</div>
-    ${ck('Чорний контур','stroke',x.stroke)}${ck('Плашка під текстом','bg',x.bg)}`;
-    bind(x,k=>{if(k==='start'&&x.start>x.end-.1)x.end=Math.min(mx,x.start+.5);if(k==='end'&&x.end<x.start+.1)x.end=x.start+.1;if(['start','end','text'].includes(k))renderTimeline();if(k==='start')seek(x.start+.3)},{start:fmt,end:fmt,size:v=>v.toFixed(1)});
-    $('#tStart').onclick=()=>{const d=x.end-x.start;x.start=S.t;x.end=S.t+d;renderProps();renderTimeline()};
-    $('#tCenter').onclick=()=>{x.x=.5;x.y=.5;kick()};
-    $('#tDup').onclick=()=>{const n={...x,id:uid(),y:clamp(x.y+.08,0,1)};S.texts.push(n);select('text',n.id)};
-    $('#tDel').onclick=()=>{S.texts=S.texts.filter(t=>t!==x);select(null)};
+    sheet('text','🅣 '+esc(x.text.split('\n')[0]||'Текст'),
+      `<button id="tStart" title="Почати з курсора">⏱</button><button id="tCenter" title="По центру">⊕</button><button id="tDup" title="Копія">⧉</button><button id="tDel" title="Видалити" class="dang">🗑</button>`,[
+      {id:'txt',label:'Текст',html:`<textarea class="ttext" data-k="text">${esc(x.text)}</textarea>`+sl('Показ з','start',0,mx,.05,x.start,fmt)+sl('Показ до','end',0,mx,.05,x.end,fmt)},
+      {id:'style',label:'Стиль',html:sl('Розмір','size',2,20,.1,x.size,v=>v.toFixed(1))+
+        `<div class="grid2"><label class="f"><span>Колір</span><input type="color" data-k="color" value="${x.color}" style="width:100%;height:36px;border:0;background:none"></label>`+
+        sel_('Товщина','weight',[['400','Звичайна'],['700','Жирна'],['900','Дуже жирна']],x.weight)+'</div>'+
+        sel_('Шрифт','font',[['sans-serif','Звичайний'],['serif','З засічками'],['monospace','Моноширинний'],['cursive','Рукописний']],x.font)+
+        ck('Чорний контур','stroke',x.stroke)+ck('Плашка під текстом','bg',x.bg)},
+      {id:'anim',label:'Анімація',html:sel_('Анімація','anim',[['none','Без анімації'],['pop','Вискакування'],['fade','Плавно'],['up','Знизу вгору'],['type','Друкарська машинка']],x.anim)}]);
+    bind(x,k=>{if(k==='start'&&x.start>x.end-.1)x.end=Math.min(mx,x.start+.5);if(k==='end'&&x.end<x.start+.1)x.end=x.start+.1;if(['start','end','text'].includes(k))renderTimeline();if(k==='start')seek(x.start+.3);if(k==='anim')seek(x.start+.01)},{start:fmt,end:fmt,size:v=>v.toFixed(1)});
+    $('#tStart').onclick=()=>{hist();const d=x.end-x.start;x.start=S.t;x.end=S.t+d;renderProps();renderTimeline()};
+    $('#tCenter').onclick=()=>{hist();x.x=.5;x.y=.5;kick()};
+    $('#tDup').onclick=()=>{hist();const n={...x,id:uid(),y:clamp(x.y+.08,0,1)};S.texts.push(n);select('text',n.id)};
+    $('#tDel').onclick=()=>{hist();S.texts=S.texts.filter(t=>t!==x);select(null)};
   }
   else if(s.kind==='music'){const m=S.music;if(!m)return select(null);
-    props.innerHTML=`<h3>🎵 ${esc(m.name)}</h3>
-    ${sl('Старт на таймлайні','start',0,Math.max(S.total,1),.05,m.start,fmt)}
-    ${sl('Пропустити початок треку','trimIn',0,Math.max(0,m.dur-1),.1,m.trimIn,fmt)}
-    ${sl('Гучність','volume',0,1.5,.05,m.volume,v=>Math.round(v*100)+'%')}
-    ${ck('Плавна поява (2с)','fadeIn',m.fadeIn)}${ck('Плавне згасання в кінці (2с)','fadeOut',m.fadeOut)}
-    <div class="muted">Звук самих відеокліпів регулюється у властивостях кліпу.</div>
-    <div class="btns"><button id="mRep">🔁 Замінити</button><button id="mDel" class="dang">🗑 Прибрати музику</button></div>`;
+    sheet('music','🎵 '+esc(m.name),`<button id="mRep" title="Замінити">🔁</button><button id="mDel" title="Прибрати" class="dang">🗑</button>`,[
+      {id:'m',label:'Музика',html:sl('Старт на таймлайні','start',0,Math.max(S.total,1),.05,m.start,fmt)+
+        sl('Пропустити початок треку','trimIn',0,Math.max(0,m.dur-1),.1,m.trimIn,fmt)+
+        sl('Гучність','volume',0,1.5,.05,m.volume,v=>Math.round(v*100)+'%')+
+        ck('Плавна поява (2с)','fadeIn',m.fadeIn)+ck('Плавне згасання в кінці (2с)','fadeOut',m.fadeOut)}]);
     bind(m,k=>{if(k==='start'||k==='trimIn')renderTimeline()},{start:fmt,trimIn:fmt,volume:v=>Math.round(v*100)+'%'});
     $('#mRep').onclick=()=>$('#fMusic').click();
-    $('#mDel').onclick=()=>{m.el.pause();try{m.gain&&m.gain.disconnect()}catch(e){}S.music=null;select(null)};
+    $('#mDel').onclick=()=>{hist();m.el.pause();S.music=null;select(null)};
   }
 }
 function split(){
@@ -632,7 +736,7 @@ function split(){
   if(!c||!act.includes(c))c=act[act.length-1];
   if(!c)return toast('Поставте курсор на кліп');
   const local=S.t-c.start;if(local<.1||local>c.dur-.1)return toast('Курсор занадто близько до краю кліпу');
-  const n=cloneClip(c);const i=S.clips.indexOf(c);
+  hist();const n=cloneClip(c);const i=S.clips.indexOf(c);
   if(c.type==='video'){const cut=c.in+local*c.speed;n.in=cut;c.out=cut}else{n.imgDur=c.imgDur-local;c.imgDur=local;n.kb=c.kb}
   n.trans=c.trans;c.trans=null;S.clips.splice(i+1,0,n);select('clip',n.id);toast('Кліп розрізано')
 }
@@ -783,27 +887,53 @@ async function startExport(){
 function finishExport(){if(!REC||REC.done)return;REC.done=true;renderFrame(S.total);setTimeout(()=>{try{REC.rec.stop()}catch(e){}},250)}
 
 /* ============ Кнопки ============ */
-$('#addMedia').onclick=$('#emptyAdd').onclick=()=>$('#fMedia').click();
+$('#emptyAdd').onclick=$('#tMedia').onclick=()=>$('#fMedia').click();
 $('#fMedia').onchange=e=>{importMedia([...e.target.files]);e.target.value=''};
-$('#addMusic').onclick=()=>$('#fMusic').click();
 $('#fMusic').onchange=e=>{if(e.target.files[0])importMusic(e.target.files[0]);e.target.value=''};
 $('#fPlugin').onchange=e=>{importPlugins([...e.target.files]);e.target.value=''};
-$('#addText').onclick=()=>{const st=S.t>=S.total-.2?0:S.t;const x={id:uid(),text:'Ваш текст',start:st,end:Math.min(Math.max(S.total,3),st+3),x:.5,y:.72,size:7,color:'#ffffff',stroke:true,bg:false,anim:'pop',font:'sans-serif',weight:'900'};
-  if(x.end-x.start<.5)x.end=x.start+3;S.texts.push(x);select('text',x.id);seek(x.start+.4)};
-$('#splitBtn').onclick=split;
+function addText(){hist();const st=S.t>=S.total-.2?0:S.t;const x={id:uid(),text:'Ваш текст',start:st,end:Math.min(Math.max(S.total,3),st+3),x:.5,y:.72,size:7,color:'#ffffff',stroke:true,bg:false,anim:'pop',font:'sans-serif',weight:'900'};
+  if(x.end-x.start<.5)x.end=x.start+3;S.texts.push(x);TAB.text='txt';select('text',x.id);seek(x.start+.4)}
+function clipAtHead(needNext){if(!S.clips.length){toast('Спершу додайте відео або фото');return null}
+  const act=activeAt(S.t);let c=act[0]||S.clips[S.clips.length-1];
+  if(needNext&&S.clips.indexOf(c)===S.clips.length-1){if(S.clips.length<2){toast('Для переходу потрібно хоча б два кліпи');return null}c=S.clips[S.clips.length-2]}
+  return c}
+function openClipTab(tab,needNext){const c=clipAtHead(needNext);if(!c)return;TAB.clip=tab;select('clip',c.id)}
+$('#tEdit').onclick=()=>openClipTab('trim');
+$('#tFx').onclick=()=>openClipTab('fx');
+$('#tTr').onclick=()=>openClipTab('tr',true);
+$('#tColor').onclick=()=>openClipTab('color');
+$('#tAudio').onclick=()=>S.music?select('music',S.music.id):$('#fMusic').click();
+$('#tText').onclick=addText;
+$('#tSplit').onclick=split;
+$('#tLib').onclick=openLib;
+$('#tFmt').onclick=()=>openFormat();
 $('#playBtn').onclick=()=>S.playing?pause():play();
-$('#startBtn').onclick=()=>{pause();seek(0);tl.scrollLeft=0};
-$('#zoomIn').onclick=()=>{S.pps=Math.min(240,S.pps*1.4);renderTimeline()};
-$('#zoomOut').onclick=()=>{S.pps=Math.max(6,S.pps/1.4);renderTimeline()};
-$('#libBtn').onclick=openLib;
+$('#undoBtn').onclick=undo;$('#redoBtn').onclick=redo;
+$('#fullBtn').onclick=()=>{const st=$('#stage');try{(st.requestFullscreen||st.webkitRequestFullscreen).call(st)}catch(e){toast('Повноекранний режим недоступний')}};
+$('#stage').addEventListener('click',e=>{if(document.fullscreenElement&&e.target.id!=='emptyAdd')S.playing?pause():play()});
+$('#helpBtn').onclick=()=>openModal(`<div class="mh"><b>Як користуватися</b><button id="hClose">✕</button></div>
+  <div class="help" style="font-size:13px;line-height:1.55">
+  • <b>Прокручуйте таймлайн пальцем</b>: біла лінія по центру — поточний момент.<br>
+  • <b>Двома пальцями</b> на таймлайні — масштаб.<br>
+  • Торкніться кліпу, тексту чи музики, щоб змінити їх. Квадратик між кліпами — перехід.<br>
+  • Текст перетягується пальцем прямо на кадрі.<br>
+  • <b>Ефекти, Переходи, Фільтри</b> внизу відкривають налаштування кліпу під курсором.<br>
+  • <b>Бібліотека</b> — власні переходи й ефекти: створюйте, завантажуйте з файлу, діліться.<br>
+  • ↶ ↷ — скасувати / повторити дію.</div>`)||($('#hClose').onclick=closeModal);
 $('#expBtn').onclick=startExport;
-$('#aspect').onchange=e=>{S.aspect=e.target.value;resize();renderTimeline()};
-$('#quality').onchange=e=>{S.q=+e.target.value;resize();renderTimeline()};
-document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select'))return;if(e.code==='Space'){e.preventDefault();S.playing?pause():play()}});
+function updFmt(){$('#fmtBtn').textContent=S.q+'P ▾'}
+function openFormat(){openModal(`<div class="mh"><b>Формат відео</b><button id="fClose">✕</button></div>
+  <div class="muted">Співвідношення сторін</div><div class="btns">${[['9:16','9:16 TikTok'],['1:1','1:1'],['4:5','4:5'],['16:9','16:9 YouTube']].map(([a,n])=>`<button data-a="${a}" class="${S.aspect===a?'acc':''}">${n}</button>`).join('')}</div>
+  <div class="muted" style="margin-top:8px">Якість експорту</div><div class="btns">${[720,1080].map(q=>`<button data-q="${q}" class="${S.q===q?'acc':''}">${q}p</button>`).join('')}</div>`);
+  $('#fClose').onclick=closeModal;
+  mbox.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{S.aspect=b.dataset.a;resize();renderTimeline();updFmt();openFormat()});
+  mbox.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{S.q=+b.dataset.q;resize();renderTimeline();updFmt();openFormat()})}
+$('#fmtBtn').onclick=openFormat;
+document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select'))return;if(e.code==='Space'){e.preventDefault();S.playing?pause():play()}if((e.ctrlKey||e.metaKey)&&e.code==='KeyZ'){e.preventDefault();e.shiftKey?redo():undo()}});
 ['pointerdown','input','wheel'].forEach(ev=>document.addEventListener(ev,kick,{passive:true}));
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&S.playing&&!S.exporting)pause()});
 
-resize();renderTimeline();renderProps();requestAnimationFrame(loop);
+resize();setPlayIcon();updUndo();renderTimeline();renderProps();requestAnimationFrame(loop);
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
 window.__S=S;
 </script>
